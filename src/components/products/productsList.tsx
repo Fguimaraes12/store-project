@@ -6,10 +6,12 @@ export default async function ProductsList() {
   const products = data.products
 
   return (
-    <ul className="w-full h-full flex flex-wrap justify-center">
+ <div className="flex justify-center">
+      <ul className="w-330  h-full flex flex-wrap justify-start items-center">
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </ul>
+ </div>
   )
 }
