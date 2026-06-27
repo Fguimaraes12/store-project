@@ -1,13 +1,15 @@
-import { Span } from "next/dist/trace"
+'use client'
+
 import StarRating from "./starRating"
-import { Products } from "@/types/products"
+import { Product } from "@/types/products"
+import { useCartContext } from "@/context/cartContext"
 
 type ProductCardProps = {
-  product: Products
+  product: Product
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-
+const {dispatch} = useCartContext()
   
   return (
     <li className="bg-white w-64 h-96 m-1 my-4 border border-gray-200 rounded-2xl shadow-sm hover:scale-103">
@@ -35,7 +37,9 @@ export default function ProductCard({ product }: ProductCardProps) {
                 ${product.price}
                 <span className="text-sm text-gray-400 ml-2 line-through">${product.discountPercentage}</span>
               </span>
-              <button className="text-green-600 bg-gray-200 text-sm rounded-sm p-2 cursor-pointer">
+              <button className="text-green-600 bg-gray-200 text-sm rounded-sm p-2 cursor-pointer"
+              onClick={() => dispatch({type: "ADD_CART", payload: product})}
+              >
                 Add to cart
               </button>
           </div>
