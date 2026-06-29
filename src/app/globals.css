@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+@layer components {
+  .btn-underline {
+    @apply relative pb-1;
+  }
+
+  .btn-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 h-0.5 w-0 bg-black;
+    transition: width 0.3s ease;
+  }
+
+  .btn-underline:hover::after {
+    @apply w-full;
+  }
+}
