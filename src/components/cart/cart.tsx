@@ -48,10 +48,10 @@ const {state, setModalCart} = useCartContext()
               
               <div className="w-250 self-center h-full flex justify-between">
                 <div className="flex items-center gap-2">
-                  <input type="checkbox" />
+                  <input type="checkbox" className="cursor-pointer"/>
                   <p>Agree with Our Shippinh Policy</p>
                 </div>
-               <button className="w-65 bg-green-600 my-6 p-2 text-white text-lg flex items-center justify-center sticky rounded-2xl">Order Now</button>
+               <button className="w-65 bg-green-600 my-6 p-2 text-white text-lg flex items-center justify-center sticky rounded-2xl cursor-pointer">Order Now</button>
               </div>
             </div>
         </div>
