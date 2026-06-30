@@ -12,7 +12,6 @@ const {modalCart, setModalCart} = useCartContext()
 
     return(
    <div>
-    <LinesEffect/>
             <div className="w-full h-20 flex items-center justify-evenly">
             {/* LOGO */}
             <div className="flex items-center"> 
