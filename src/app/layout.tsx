@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { CartProvider } from "@/context/cartContext";
+import {FilterProvider} from "@/context/filterContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,9 +16,11 @@ export default function RootLayout({
   return (
     <html>
       <body className="min-h-full flex flex-col">
-        <CartProvider>
-         {children} 
-        </CartProvider>  
+        <FilterProvider>
+          <CartProvider>
+           {children} 
+          </CartProvider>  
+        </FilterProvider>
       </body>
     </html>
   );
