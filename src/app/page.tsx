@@ -7,6 +7,7 @@ export default function Home() {
   return (
     <div>
        <Header/>
+       <Hero/>
        <FilterBar/>
        <ProductsList/>
     </div>
