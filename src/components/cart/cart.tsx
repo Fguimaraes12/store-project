@@ -1,14 +1,13 @@
 'use client'
 import { useCartContext } from "@/context/cartContext"
-import CartReducer, { initialState } from "@/reducers/cartReducer"
-import { Minus, Plus } from "lucide-react"
-import { useReducer } from "react"
+import { Minus, Plus, Trash2 } from "lucide-react"
 
 
 
 
 export default function Cart(){
 const {state, setModalCart} = useCartContext()
+const {dispatch} = useCartContext()
 
     return(
         <div className="flex justify-center items-center z-50 fixed inset-0 bg-black/50 backdrop-blur-sm">
@@ -18,7 +17,14 @@ const {state, setModalCart} = useCartContext()
               </div>
               <ul className="h-full w-full flex flex-col items-center overflow-y-auto">
                 {state.cart.map((product) => (
-                        <li key={product.id} className=" bg-white w-250 min-h-30 flex items-center my-3 rounded-2xl shadow-sm">
+                        <li key={product.id} className="relative bg-white w-250 min-h-36 flex items-center my-3 rounded-2xl shadow-sm">
+                           <button
+                             onClick={() => dispatch({type: "REMOVE_CART", payload: product.id})}
+                             aria-label="Remover item"
+                             className="absolute top-3 right-3 text-gray-400 hover:text-red-500 transition-colors"
+                           >
+                             <Trash2 size={18} />
+                           </button>
                            <div className="flex w-full h-full items-center">
                             <img src={product.images[0]} alt={product.title} className="size-25 mx-5"/>
                               <div className="ml-4 mr-9 w-120">
@@ -28,13 +34,17 @@ const {state, setModalCart} = useCartContext()
                               
                               <div className="w-70 flex items-center justify-between ">
                                  <div className="flex items-center gap-2 bg-gray-50 rounded-full px-3 py-1">
-                                    <button className="w-6 h-6 flex items-center justify-center rounded-full bg-green-400 text-white font- hover:bg-green-500 transition-colors text-sm">
+                                    <button
+                                    onClick={() => dispatch({type: "INCREASE_QUANTITY", payload: product.id})}
+                                     className="w-6 h-6 flex items-center justify-center rounded-full bg-green-400 text-white font- hover:bg-green-500 transition-colors text-sm">
                                       <Plus size={14} strokeWidth={3}/>
                                     </button>
                                     <span className="text-sm font-semibold text-gray-700 min-w-[16px] text-center">                                  
-                                      1
+                                      {product.quantity}
                                     </span>
-                                    <button className="w-6 h-6 flex items-center justify-center rounded-full bg-green-400 text-white font-bold hover:bg-green-500 transition-colors">                                  
+                                    <button
+                                    onClick={() => dispatch({type: "DECREASE_QUANTITY", payload: product.id})}
+                                    className="w-6 h-6 flex items-center justify-center rounded-full bg-green-400 text-white font-bold hover:bg-green-500 transition-colors">                                  
                                       <Minus size={14} strokeWidth={3}/>
                                     </button>
                                  </div>
