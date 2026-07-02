@@ -50,7 +50,7 @@ export default function CartReducer(state: State, action: Action){
 
         return {...state,
                 cart: state.cart.map((product) => {
-                   if(product.quantity > 0 && product.id == action.payload){
+                   if(product.quantity >= 0 && product.id == action.payload){
                    return {...product, quantity: product.quantity - 1}
                  }
                  return product
